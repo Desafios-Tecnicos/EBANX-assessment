@@ -1,20 +1,8 @@
 
 # Description
 
-This Project is a NestJs TypeScript scaffold to all my personal projects.
+This an api created to the EBANX technical assessment, forked from  my personal boilerplate. All unecessary features had been removed, so, if you want to know a little more about the boilerplate, visit the original boilerplate (https://github.com/PratesJr/nest-js-scaffold)
 
-## What is included
-
-- Lint Staged
-- Husky hooks (commit lint, test coverage)
-- ESLINT configuration
-- Database Container
-- Sequelize ORM
-
-## Pending  Features
-
-- OAuth Strategy
-- Swagger documentation
 
 ## System Requirements
 
@@ -34,11 +22,7 @@ npm install
 touch .env && cp .env.example .env
 ```
 
-- After this commands you'll need to add the database values on you env file, then run the following command
 
-```bash
-docker-compose up -d
-```
 
 ## Running the app
 
@@ -47,23 +31,10 @@ docker-compose up -d
 $ npm run start
 
 # watch mode
-$ npm run start:dev
+$ npm run dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Stay in touch
