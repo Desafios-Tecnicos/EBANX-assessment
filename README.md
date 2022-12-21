@@ -1,7 +1,7 @@
 
 # Description
 
-This an api created to the EBANX technical assessment, forked from  my personal boilerplate. All unecessary features had been removed, so, if you want to know a little more about the boilerplate, visit the original boilerplate (https://github.com/PratesJr/nest-js-scaffold)
+This is an API created to the EBANX technical assessment, forked from  my personal boilerplate. All unecessary features had been removed, so, if you want to know a little more about the boilerplate, visit the original boilerplate (https://github.com/PratesJr/nest-js-scaffold)
 
 
 ## System Requirements
