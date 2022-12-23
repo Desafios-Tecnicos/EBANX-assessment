@@ -7,13 +7,15 @@ export class CacheInMemoryService implements CacheService {
   constructor(@Inject(CACHE_MANAGER) private _cache: Cache) {
 
   }
-  get(key: string): Promise<unknown> {
-    return this._cache.get(key);
+  get(key: string): Promise<any> {
+    return this._cache.get(key).then((res) => {
+      return res;
+    });
   }
   reset(): Promise<void> {
     return this._cache.reset();
   }
-  set(key: string, value: any): Promise<void> {
-    return this._cache.set(key, value);
+  set(key: string, value: any): Promise<any> {
+    return this._cache.set(key, value, 1800);
   }
 }
