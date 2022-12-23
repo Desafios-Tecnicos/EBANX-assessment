@@ -16,8 +16,9 @@ export class BalanceController {
 
   @HttpCode(HttpStatus.OK)
   @Post('reset')
-  resetCache(): Promise<void> {
-    return this._balanceService.resetValues();
+  resetCache(@Res() res: Response): any {
+    this._balanceService.resetValues();
+    return res.status(200).send('OK');
   }
 
   @Get('balance')
@@ -26,7 +27,7 @@ export class BalanceController {
       if (isNil(response)) {
         return res.status(404).json(0);
       }
-      return res.status(200).json(response);
+      return res.status(200).json(response.balance);
     });
   }
 
@@ -37,7 +38,7 @@ export class BalanceController {
       if (isNil(response)) {
         return res.status(404).json(0);
       }
-      return res.status(200).json({ destination: response });
+      return res.status(201).json(response);
     });
 
 
