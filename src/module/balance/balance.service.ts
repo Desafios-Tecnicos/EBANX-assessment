@@ -17,7 +17,7 @@ export class BalanceServiceImpl implements BalanceService {
     balance.balance -= value.amount;
 
     this._cacheService.set(`ac_${value.origin}`, balance);
-    return balance;
+    return { origin: balance };
   }
   async getBalance(key: any): Promise<any> {
     return this._cacheService.get(key);
@@ -39,24 +39,30 @@ export class BalanceServiceImpl implements BalanceService {
 
   }
   async transfer(value: any): Promise<any> {
-    const origin: any = await this._cacheService.get(`ac_${value.origin}`);
+    return this._cacheService.get(`ac_${value.origin}`).then(from => {
+      if (isNil(from)) {
+        return null;
 
-    if (isNil(origin)) {
-      return null;
+      }
+      return this._cacheService.get(`ac_${value.destination}`).then(to => {
 
-    }
+        from.balance -= value.amount;
+        const newBalance = {
+          id: to?.id || value.destination,
+          balance: !isNil(to) ? to.balance + value.amount : value.amount,
+        };
 
-    const destination: any = await this._cacheService.get(`ac_${value.destination}`);
+        return this._cacheService.set(`ac_${value.destination}`, newBalance).then(() => {
 
-    origin.balance -= value.amount;
-    destination.balance += value.amount;
+          this._cacheService.set(`ac_${value.origin}`, from);
 
-    return this._cacheService.set(`ac_${value.destination}`, destination).then((res) => {
-
-      this._cacheService.set(`ac_${value.origin}`, origin);
-
-      return res;
+          return { destination: newBalance, origin: from };
+        });
+      });
     });
+
+
+
   }
 
   resetValues(): Promise<any> {
