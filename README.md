@@ -22,7 +22,9 @@ npm install
 touch .env && cp .env.example .env
 ```
 
+## Important
 
+the cache-manager package is not working well in the latest version, so please verify on your package.json that the version is ^4.0.0
 
 ## Running the app
 
